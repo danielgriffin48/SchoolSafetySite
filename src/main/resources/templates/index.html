@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>How safe is your school?</title>
+    <link th:href="@{/Style.css}" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+<body>
+<div class="mainContainer">
+<div>
+    <form>
+        <label for="search"><h1>Are the roads by your school safe?</h1></label>
+        <input type="text" id="search" name="search" value="Find your school">
+        <div id="autocompleteResultsContainer"><ul id="resultsList"></ul></div>
+    </form>
+</div>
+</div>
+</body>
+<script>
+    var searchBar = document.getElementById("search").addEventListener('input', autoComplete);
+
+    function displayAutoCompleteResults(data)
+    {
+        if (data.length >= 1)
+        {
+            var resultsList = document.getElementById("resultsList");
+            resultsList.innerHTML = '';
+           data.forEach(data =>
+           {
+                const linkHolder = document.createElement('a');
+                linkHolder.href = "http://127.0.0.1:8080/urn/" + data.urn;
+
+                const li = document.createElement('li');
+                li.classList.add('searchResult');
+
+                const schoolName = document.createElement('h3');
+                schoolName.classList.add('schoolName');
+                schoolName.innerText = data.establishmentName;
+
+                li.appendChild(linkHolder)
+                linkHolder.append(schoolName);
+
+                resultsList.appendChild(li);
+           });
+        }
+    }
+    function autoComplete()
+    {
+        console.log("Search changed");
+        var searchTerm = document.getElementById("search").value;
+        if (searchTerm.length >= 3)
+        {
+            var searchURL = "http://127.0.0.1:8080/urn/search/" + searchTerm;
+            console.log(searchURL);
+            fetch(searchURL)
+              .then(response => response.json())
+              .then(data => displayAutoCompleteResults(data));
+        }
+    }
+</script>
+</html>

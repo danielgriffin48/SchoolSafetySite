@@ -1,0 +1,61 @@
+body {
+	font-family: sans-serif;
+	background-color: #564D80;
+	color: #F5F3F5;
+	font-size: 1.625rem;
+}
+
+.mainContainer {
+    display: flex;
+    justify-content: center;
+    padding-top: 5rem;
+    flex-direction: column;
+}
+
+#resultsList {
+	list-style: none;
+	width: 100%;
+	padding: 0.7rem;
+	margin-top: 0px;
+}
+
+#search {
+    width: 100%;
+    padding: .7rem;
+    box-sizing: border-box;
+}
+
+li > a {
+	display: block;
+	padding-top: .4rem;
+	text-decoration: none;
+	color: #5A5282;
+
+}
+
+li > a > h3 {
+	margin: 0px;
+	color: #564D80;
+}
+
+ul {
+	padding: 0px;
+}
+
+.searchResult {
+	background: #F5F3F5;
+	color: #564D80;
+	display: flex;
+	margin-bottom: 0.1rem;
+	padding: 0.1rem;
+	box-sizing: border-box;
+}
+
+.searchResult:hover {
+    background: #FF579F;
+}
+
+#mapid {
+    height: 300px;
+    width: 400px;
+}
