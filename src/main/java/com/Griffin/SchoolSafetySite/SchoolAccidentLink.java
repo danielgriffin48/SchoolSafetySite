@@ -17,5 +17,13 @@ public class SchoolAccidentLink {
     String accidentIndex;
     String schoolURN;
     Double distance;
+    String lat;
+    String lon;
+    int accidentSeverity;
+    int numberOfVehicles;
+    int numberOfCasualities;
+    int dayOfWeekNumber;
+    String dayOfWeekString;
+    String time;
 
 }

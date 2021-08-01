@@ -50,6 +50,14 @@ public class DevDataLoader implements ApplicationRunner {
             n.setAccidentIndex(record.get(0));
             n.setSchoolURN(record.get(1));
             n.setDistance(Double.parseDouble(record.get(2)));
+            n.setLat(record.get(3));
+            n.setLon(record.get(4));
+            n.setAccidentSeverity(Integer.parseInt(record.get(5)));
+            n.setNumberOfVehicles(Integer.parseInt(record.get(6)));
+            n.setNumberOfCasualities(Integer.parseInt(record.get(7)));
+            n.setDayOfWeekNumber(Integer.parseInt(record.get(8)));
+            n.setTime(record.get(9));
+            n.setDayOfWeekString(record.get(10));
 
             this.schoolAccidentLinkRepository.save(n);
 
