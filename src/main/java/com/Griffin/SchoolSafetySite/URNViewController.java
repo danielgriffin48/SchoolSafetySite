@@ -5,14 +5,21 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.*;
+
 @Controller
 @RequestMapping("/urn")
 public class URNViewController {
     private SchoolRepository schoolRepository;
     private SchoolAccidentLinkRepository schoolAccidentLinkRepository;
+    private CasaultyRepository casaultyRepository;
 
-    URNViewController(SchoolRepository schoolRepository) {
+    URNViewController(SchoolRepository schoolRepository,
+                      SchoolAccidentLinkRepository schoolAccidentLinkRepository,
+                        CasaultyRepository casaultyRepository) {
         this.schoolRepository = schoolRepository;
+        this.schoolAccidentLinkRepository = schoolAccidentLinkRepository;
+        this.casaultyRepository = casaultyRepository;
     }
 
     @GetMapping
@@ -26,6 +33,14 @@ public class URNViewController {
     {
         ModelAndView mav = new ModelAndView(("urn"));
         mav.addObject("school", schoolRepository.findAllByURN(URN));
+        List<SchoolAccidentLink> schoolAccidentLinkSet = new ArrayList<>();
+        schoolAccidentLinkSet.addAll(schoolAccidentLinkRepository.findAllBySchoolURN(URN));
+
+        for (SchoolAccidentLink schoolAccidentLink : schoolAccidentLinkSet)
+        {
+            schoolAccidentLink.setCasualtyList(casaultyRepository.findAllByAccidentIndex(schoolAccidentLink.getAccidentIndex()));
+        }
+        mav.addObject("accidents", schoolAccidentLinkSet);
 
         return mav;
     }
@@ -47,6 +62,24 @@ public class URNViewController {
     public @ResponseBody Iterable<School> schoolSearchResult(@PathVariable("searchItem") String searchItem)
     {
         return schoolRepository.findAllByEstablishmentNameContaining(searchItem);
+    }
+
+    @GetMapping("acc/{id}")
+    public@ResponseBody Iterable<SchoolAccidentLink> accidentsByURN(@PathVariable("id") String schoolURN)
+    {
+        return schoolAccidentLinkRepository.findAllBySchoolURN(schoolURN);
+    }
+
+    @GetMapping("/search/acc/{accidentIndex}")
+    public @ResponseBody Iterable<Casualty> casualtiesByAccidentIndex(@PathVariable("accidentIndex") String accidentIndex)
+    {
+        return casaultyRepository.findAllByAccidentIndex(accidentIndex);
+    }
+
+    @GetMapping("/search/acc/all")
+    public @ResponseBody Iterable<Casualty> allCasualties()
+    {
+        return casaultyRepository.findAll();
     }
 
 }

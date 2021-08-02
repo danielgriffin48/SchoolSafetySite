@@ -1,61 +1,170 @@
-body {
-	font-family: sans-serif;
-	background-color: #564D80;
-	color: #F5F3F5;
-	font-size: 1.625rem;
+html, body {
+height: 100%;
 }
 
+body {
+	font-family: sans-serif;
+	background-color: #003459;
+	color: #F5F3F5;
+	font-size: 1.625rem;
+	display: flex;
+	flex-direction: column;
+}
+
+
 .mainContainer {
-    display: flex;
+   
+    max-width: 90%;
+    margin-left: auto;
+    margin-right: auto;
     justify-content: center;
-    padding-top: 5rem;
-    flex-direction: column;
+    flex: 1 0 auto;
+}    
+
+footer {
+	background-color: #001f2f;
+	flex-shrink: 0;
+}
+
+footer > h4 {
+	font-size: 1rem;
+	font-weight: 100;
+	padding-left: 2rem;
 }
 
 #resultsList {
 	list-style: none;
 	width: 100%;
-	padding: 0.7rem;
 	margin-top: 0px;
 }
 
 #search {
     width: 100%;
-    padding: .7rem;
+    padding: .9rem;
+    font-size: 1.3rem;
+    background-color: #d6d6b1;
+	border-radius: 5px; 
+	border-top-style: none;
+    border-right-style: none;
+    border-bottom-style: solid;
+    border-left-style: none;
+    border-bottom-color: white;
+    color: #001f2f;
     box-sizing: border-box;
 }
-
-li > a {
-	display: block;
-	padding-top: .4rem;
-	text-decoration: none;
-	color: #5A5282;
-
 }
 
-li > a > h3 {
-	margin: 0px;
-	color: #564D80;
-}
+
+
 
 ul {
 	padding: 0px;
 }
 
 .searchResult {
-	background: #F5F3F5;
+	background: #d6d6b1;
 	color: #564D80;
 	display: flex;
-	margin-bottom: 0.1rem;
-	padding: 0.1rem;
+	margin-top: 0.1rem;
+	padding: 0.5rem .9rem .5rem .9rem;
 	box-sizing: border-box;
+	border-radius: 5px;
 }
 
 .searchResult:hover {
     background: #FF579F;
 }
 
+.schoolName{
+	font-size: 1.3rem;
+	margin: 0;
+}
+
+.districtName {
+	font-size: 0.9rem;
+	margin: 0;
+}
+
 #mapid {
     height: 300px;
     width: 400px;
+}
+
+.dissapear {
+
+}
+
+li > a {
+	text-decoration: none;
+	color: #001f2f;
+}
+
+.casualtyString {
+    background-color: #de541e;
+    padding: .5rem;
+    box-sizing: border-box;
+    font-weight: bold;
+    }
+
+.casualtyDetails {
+    font-size: 1rem;
+    font-weight: 100;
+    padding: .5rem;
+}
+
+.actionContainer {
+    display: flex;
+    flex-direction: column;
+}
+
+.actionContainer > h1 {
+    background-color: #f6aa1c;
+    text-align: center;
+    border-radius: 4px;
+    padding: 0.4rem;
+    color: #001f2f;
+    font-size: 2.5rem;
+}
+
+.actionRow {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 1rem;
+}
+
+.actionNumber {
+    color: #f6aa1c;
+    font-weight: 900;
+    font-size: 3rem;
+    padding-right: .5rem;
+}
+.callToActionHead > h2 {
+    background-color: #de541e;
+    padding: .5rem;
+    box-sizing: border-box;
+    font-weight: bold;
+    letter-spacing: -.1rem;
+    margin: 0px;
+}
+.actionButton {
+    background-color: #f6aa1c;
+    padding: .7rem;
+    border-style: none;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    margin-left: 2rem;
+margin-top: 1.5rem;
+}
+
+.actionDetails {
+    margin-top: .8rem;
+    margin-bottom: 1rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+.emphasiseNumber {
+    background-color: #de541e;
+    padding: .2rem;
+    font-weight: bold;
 }

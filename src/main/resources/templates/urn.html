@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <title>How safe is your school?</title>
@@ -15,22 +15,62 @@
 </head>
 <body>
 <div class="mainContainer">
-<h2><div th:text="${school.establishmentName}"></div></h2>
-<div id="mapid"></div>
+    <div class="SchoolDetails">
+        <div th:text="${school.establishmentName}"><h2></h2></div>
+        <div th:text="${school.address}"><h4></h4></div>
+        <p>There have been <span</p>
+    </div>
+    <div id="mapid"></div>
+    <div>
+        <div th:each="accident: ${accidents}"}>
+            <div th:each="casualty : ${accident.casualtyList}">
+                <span class="casualtyString" th:text="${casualty.ageSexDetails}"></span>
+                <div class="casualtyDetails"><span th:text="${accident.date}"></span> at <span th:text="${accident.time}"></span> <p><span th:text="${casualty.casualtyOutputString}"></span></p> </div>
+            </div>
+        </div>
+    </div>
+    <div class="actionContainer">
+        <h1>TAKE ACTION</h1>
+        <div class="actionDiv">
+            <div class="actionRow">
+                <div class="actionNumber">1</div>
+                <div class="callToActionHead"><h2>Tell your MP to make our roads safer</h2>
+                <div class="actionDetails">Tell your MP Boris Johnson that there have been <span class="emphasiseNumber">
+                7 </span> children injured on their way to school in <span>Barnsley East</span>.
+                <br><button class="actionButton">Contact <span>Boris Johnson</span> now</button>
+            </div></div>
+            </div>
+
+        </div>
+        <div class="actionDiv">
+            <div class="actionRow">
+                <div class="actionNumber">2</div>
+                <div class="callToActionHead"> 
+                    <h2>Ask your council what they're doing to keep our children safe</h2>
+                <div class="actionDetails">Across <span> Kirkless </span> there have been <span class="emphasiseNumber"> 7 </span> children injured on their way to school.
+                <br><button class="actionButton">Contact <span>Boris Johnson</span> and ask how they plan to reduce this.</button>
+                </div>
+                </div>
+            </div>
+        </div>
+            
+        <div class="actionDiv">
+            <div class="actionRow">
+                <div class="actionNumber">3</div>
+                <div class="callToActionHead"><h2>Share on facebook and twitter</h2>
+                    <div class="actionDetails">Across <span> Kirkless </span> there have been <span class="emphasiseNumber"> 7 </span> children injured on their way to school.
+                        <br><button class="actionButton">Contact <span>Boris Johnson</span> and ask how they plan to reduce this.<\button>
+            </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
 </div>
+<footer>
+    <h4><p>Developed by</p>
+        <p>Daniel Griffin</p></h4>
+</footer>
 </body>
-<script  th:inline="javascript">
-    var schoolLat = [[${school.lat}]];
-    var schoolLon = [[${school.lon}]];
-    var mymap = L.map('mapid').setView([schoolLat, schoolLon], 13);
-    var marker = L.marker([schoolLat, schoolLon]).addTo(mymap);
-    L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
-    attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-    maxZoom: 18,
-    id: 'mapbox/streets-v11',
-    tileSize: 512,
-    zoomOffset: -1,
-    accessToken: 'pk.eyJ1IjoiZXJsaWNoYmFjaG1hbiIsImEiOiJja3FqdXkyOG8wNW42MndyMGtsajBzZW1zIn0.nWuxiJAhQSGZmrzv_1_n0g'
-}).addTo(mymap);
-</script>
+
 </html>

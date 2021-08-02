@@ -1,0 +1,21 @@
+<!--<script  th:inline="javascript">
+    var schoolLat = [[${school.lat}]];
+    var schoolLon = [[${school.lon}]];
+
+    var mymap = L.map('mapid').setView([schoolLat, schoolLon], 13);
+    var marker = L.marker([schoolLat, schoolLon]).addTo(mymap);
+
+   * <![CDATA[ */
+        /*[# th:each="accident : ${accidents}"]*/
+        L.marker(/*[[${accident.lat}]]*/,/*[[${accident.lon}]]*/).addTo(mymap);
+        /*[/]*/
+     /* ]]> */
+    L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+    attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+    maxZoom: 18,
+    id: 'mapbox/streets-v11',
+    tileSize: 512,
+    zoomOffset: -1,
+    accessToken: 'pk.eyJ1IjoiZXJsaWNoYmFjaG1hbiIsImEiOiJja3FqdXkyOG8wNW42MndyMGtsajBzZW1zIn0.nWuxiJAhQSGZmrzv_1_n0g'
+}).addTo(mymap);
+</script> -->

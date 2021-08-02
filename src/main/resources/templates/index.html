@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>How safe is your school?</title>
     <link th:href="@{/Style.css}" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="/home/griffin/SchoolCrashData-2.0/SchoolSafetySite/src/main/resources/static/Style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 </head>
 <body>
@@ -15,7 +16,12 @@
         <div id="autocompleteResultsContainer"><ul id="resultsList"></ul></div>
     </form>
 </div>
+
 </div>
+<footer>
+    <h4><p>Developed by</p>
+        <p>Daniel Griffin</p></h4>
+</footer>
 </body>
 <script>
     var searchBar = document.getElementById("search").addEventListener('input', autoComplete);
@@ -34,12 +40,18 @@
                 const li = document.createElement('li');
                 li.classList.add('searchResult');
 
-                const schoolName = document.createElement('h3');
+                const schoolName = document.createElement('p');
                 schoolName.classList.add('schoolName');
                 schoolName.innerText = data.establishmentName;
 
+                const administrativeDistrict = document.createElement('p');
+                administrativeDistrict.classList.add('districtName');
+                administrativeDistrict.innerText = data.districtAdministrative;
+                console.log(data.districtAdministrative);
+
                 li.appendChild(linkHolder)
                 linkHolder.append(schoolName);
+                linkHolder.append(administrativeDistrict);
 
                 resultsList.appendChild(li);
            });
