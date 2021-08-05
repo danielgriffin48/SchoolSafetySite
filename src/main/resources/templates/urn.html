@@ -21,16 +21,13 @@
         <p><span th:text="${boroughString}"></span></p>
     </div>
     <div id="mapid"></div>
-    <div>
-        <div th:each="accident: ${accidents}">
-            <div th:each="casualty : ${accident.casualtyList}">
-                <span class="casualtyString" th:text="${casualty.ageSexDetails}"></span>
-                <div class="casualtyDetails"><span th:text="${accident.date}"></span> at <span th:text="${accident.time}">
-
-                </span> <p><span th:text="${casualty.casualtyOutputString}"></span></p> </div>
+        <div th:each="casualty : ${casualties}">
+                <span class="casualtyString" th:text="${casualty.getAgeSexDetails()}"></span>
+                <div class="casualtyDetails"><span th:text="${casualty.getDate()}"></span> at <span th:text="${casualty.getTime()}">
+                </span> <p><span th:text="${casualty.getCasualtyOutputString()}"></span></p> 
             </div>
-        </div>
-    </div>
+            </div>
+
     <div class="actionContainer">
         <h1>TAKE ACTION</h1>
         <div class="actionDiv">
@@ -90,9 +87,9 @@
     var lons = [];
     markers = [];
 
-    /*[# th:each="accident : ${accidents}"]*/
-    lats.push(/*[[${accident.lat}]]*/);
-    lons.push(/*[[${accident.lon}]]*/);
+    /*[# th:each="cas : ${casualties}"]*/
+    lats.push(/*[[${cas.getLat()}]]*/);
+    lons.push(/*[[${cas.getLon()}]]*/);
     /*[/]*/
 
     let i = 0;

@@ -44,16 +44,42 @@ public class URNViewController {
         mav.addObject("boroughAccidents", this.numberOfAccidentsOnSchoolRunInBorough(school.getDistrictAdministrative()));
         mav.addObject("constituencyAccidents", this.numberOfAccidentsOnSchoolRunInConstituency(school.getParliamentaryConstituency()));
 
-        List<SchoolAccidentLink> schoolAccidentLinkSet = new ArrayList<>();
-        schoolAccidentLinkSet.addAll(schoolAccidentLinkRepository.findAllBySchoolURN(URN));
-        for (SchoolAccidentLink schoolAccidentLink : schoolAccidentLinkSet)
-        {
-            schoolAccidentLink.setCasualtyList(casaultyRepository.findAllByAccidentIndex(schoolAccidentLink.getAccidentIndex()));
-        }
 
-        mav.addObject("accidents", schoolAccidentLinkSet);
+
+        mav.addObject("casualties", this.getCasualtyOutputForSchool(URN));
 
         return mav;
+    }
+
+    private List<casualtyOutput> getCasualtyOutputForSchool(String urn) throws SQLException {
+        String sqlQuery = "SELECT casualty.casualty_output_string, school_accident_link.date, school_accident_link.time, casualty.age_sex_details, school_accident_link.lat, school_accident_link.lon" +
+                " FROM school " +
+                "inner join school_accident_link on school.urn = school_accident_link.schoolurn " +
+                "inner join casualty on school_accident_link.accident_index = casualty.accident_index " +
+                "where casualty.age_of_casualty < 18 " +
+                "AND (left(school_accident_link.time,2) BETWEEN 8 AND 9 OR left(school_accident_link.time,2) BETWEEN 14 AND 15) " +
+                "AND school_accident_link.day_of_week_number BETWEEN 2 and 6 " +
+                "AND school_accident_link.distance < 600 " +
+                "AND school.urn = ?" +
+                "order by distance;";
+
+        Connection c = jdbcTemplate.getDataSource().getConnection();
+        PreparedStatement p = c.prepareStatement(sqlQuery);
+        p.setString(1, urn);
+        ResultSet rs = p.executeQuery();
+        List<casualtyOutput> outputObjects = new ArrayList<>();
+        while(rs.next())
+        {
+            outputObjects.add(new casualtyOutput(rs.getString("casualty_output_string"),
+                                rs.getString("date"),
+                                rs.getString("time"),
+                                rs.getString("age_sex_details"),
+                                rs.getString("lat"),
+                                rs.getString("lon")
+                                ));
+        }
+        c.close();
+        return outputObjects;
     }
 
     /**

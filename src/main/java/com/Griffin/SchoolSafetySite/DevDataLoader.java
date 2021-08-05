@@ -14,7 +14,7 @@ import java.io.Reader;
 import java.util.ArrayList;
 import java.util.List;
 
-@Component
+//@Component
 public class DevDataLoader implements ApplicationRunner {
     private SchoolRepository schoolRepository;
     private SchoolAccidentLinkRepository schoolAccidentLinkRepository;
