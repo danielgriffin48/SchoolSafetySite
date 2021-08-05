@@ -57,7 +57,7 @@ public class Casualty {
     private String casualtyOutputString;
 
     /**
-     * Generates the string that should be displayed when this casaulty is called. It assumes that
+     * Generates the string that should be displayed when this casualty is called. It assumes that
      * isIncludeInDatabase has removed any items with missing values or that should not be included. Any changes to
      * those should be refelected here. At presents it assumes that the age and gender are known.
      */

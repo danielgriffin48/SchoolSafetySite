@@ -36,6 +36,7 @@ footer > h4 {
 	list-style: none;
 	width: 100%;
 	margin-top: 0px;
+	padding-left: 0px;
 }
 
 #search {
@@ -52,10 +53,6 @@ footer > h4 {
     color: #001f2f;
     box-sizing: border-box;
 }
-}
-
-
-
 
 ul {
 	padding: 0px;
@@ -87,7 +84,7 @@ ul {
 
 #mapid {
     height: 300px;
-    width: 400px;
+    width: 100%;
 }
 
 .dissapear {

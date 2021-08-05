@@ -6,6 +6,7 @@
     <link th:href="@{/Style.css}" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="/home/griffin/SchoolCrashData-2.0/SchoolSafetySite/src/main/resources/static/Style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
 </head>
 <body>
 <div class="mainContainer">
@@ -24,7 +25,17 @@
 </footer>
 </body>
 <script>
-    var searchBar = document.getElementById("search").addEventListener('input', autoComplete);
+    var searchBar = document.getElementById("search");
+    searchBar.addEventListener('input', autoComplete);
+    searchBar.addEventListener('click', textModify)
+
+    function textModify()
+    {
+        if (this.value == "Find your school")
+        {
+            this.value = "";
+        }
+    }
 
     function displayAutoCompleteResults(data)
     {
@@ -35,7 +46,7 @@
            data.forEach(data =>
            {
                 const linkHolder = document.createElement('a');
-                linkHolder.href = "http://127.0.0.1:8080/urn/" + data.urn;
+                linkHolder.href = "http://192.168.1.170:8080/urn/" + data.urn;
 
                 const li = document.createElement('li');
                 li.classList.add('searchResult');
@@ -63,7 +74,7 @@
         var searchTerm = document.getElementById("search").value;
         if (searchTerm.length >= 3)
         {
-            var searchURL = "http://127.0.0.1:8080/urn/search/" + searchTerm;
+            var searchURL = "http://192.168.1.170:8080/urn/search/" + searchTerm;
             console.log(searchURL);
             fetch(searchURL)
               .then(response => response.json())

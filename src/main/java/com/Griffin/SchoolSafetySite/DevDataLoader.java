@@ -14,8 +14,8 @@ import java.io.Reader;
 import java.util.ArrayList;
 import java.util.List;
 
-//@Component
-public class DevDataLoader { //implements ApplicationRunner {
+@Component
+public class DevDataLoader implements ApplicationRunner {
     private SchoolRepository schoolRepository;
     private SchoolAccidentLinkRepository schoolAccidentLinkRepository;
     private CasaultyRepository casaultyRepository;
@@ -30,7 +30,7 @@ public class DevDataLoader { //implements ApplicationRunner {
     }
 
 
-    //@Override
+    @Override
     public void run(ApplicationArguments args) throws Exception {
 
         //String schoolCasualtyFileLocation = "/home/griffin/SchoolCrashData-2.0/TestData/CasTest.csv";
@@ -58,13 +58,17 @@ public class DevDataLoader { //implements ApplicationRunner {
             n.setEstablishmentTypeGroup(record.get(6));
             n.setPhaseOfEducation(record.get(12));
             n.setDistrictAdministrative(record.get(85));
+            n.setAdministrativeWard(record.get(86));
+            n.setParliamentaryConstituency(record.get(87));
+            n.setUrbanRural(record.get(88));
+            //todo add address
 
             schoolList.add(n);
         }
         this.schoolRepository.saveAll(schoolList);
 
         //String schoolAccidentLinkFileLocation = "/home/griffin/SchoolCrashData-2.0/TestData/SchoolAccLinkTest.csv";
-        String schoolAccidentLinkFileLocation = "/home/griffin/SchoolCrashData-2.0/SchoolAccLinks.csv";
+        String schoolAccidentLinkFileLocation = "/home/griffin/SchoolCrashData-2.0/SchoolAccLinks-3.0.csv";
         Iterable<CSVRecord> fileParser2 = this.openNewParser(schoolAccidentLinkFileLocation);
         List<SchoolAccidentLink> salList = new ArrayList<>();
         // for record
@@ -98,6 +102,7 @@ public class DevDataLoader { //implements ApplicationRunner {
         {
             Casualty cas = new Casualty();
             cas.setAccidentIndex(record.get(0));
+            cas.setCasualtyClass(record.get(3));
             cas.setSexOfCasualty(Integer.parseInt(record.get(4)));
             cas.setAgeOfCasualty(Integer.parseInt(record.get(5)));
             cas.setCasualtySeverity(Integer.parseInt(record.get(7)));

@@ -7,7 +7,7 @@
 
    * <![CDATA[ */
         /*[# th:each="accident : ${accidents}"]*/
-        L.marker(/*[[${accident.lat}]]*/,/*[[${accident.lon}]]*/).addTo(mymap);
+        L.marker([/*[[${accident.lat}]]*/,/*[[${accident.lon}]]*/]).addTo(mymap);
         /*[/]*/
      /* ]]> */
     L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
