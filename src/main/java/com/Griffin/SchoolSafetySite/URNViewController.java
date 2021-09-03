@@ -44,11 +44,25 @@ public class URNViewController {
         mav.addObject("boroughAccidents", this.numberOfAccidentsOnSchoolRunInBorough(school.getDistrictAdministrative()));
         mav.addObject("constituencyAccidents", this.numberOfAccidentsOnSchoolRunInConstituency(school.getParliamentaryConstituency()));
 
-
-
         mav.addObject("casualties", this.getCasualtyOutputForSchool(URN));
 
+        mav.addObject("MP", this.getMPName(school.getParliamentaryConstituency()));
+
         return mav;
+    }
+
+    private String getMPName(String constituency) throws SQLException {
+        String sqlQuery = "SELECT distinct `Name (Display as)`FROM SchoolSafetySite.Mps WHERE Constituency = ?;";
+        String MPName = null;
+        Connection c = jdbcTemplate.getDataSource().getConnection();
+        PreparedStatement p = c.prepareStatement(sqlQuery);
+        p.setString(1, constituency);
+        ResultSet rs = p.executeQuery();
+        while (rs.next())
+        {
+            MPName = rs.getString("Name (Display as)");
+        }
+        return MPName;
     }
 
     private List<casualtyOutput> getCasualtyOutputForSchool(String urn) throws SQLException {
