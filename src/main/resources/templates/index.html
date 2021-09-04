@@ -9,6 +9,8 @@
 
 </head>
 <body>
+<header th:replace="fragments/header :: header">
+</header>
 <div class="mainContainer">
 <div>
     <form>
@@ -19,9 +21,8 @@
 </div>
 
 </div>
-<footer>
-    <h4><p>Developed by</p>
-        <p>Daniel Griffin</p></h4>
+<footer th:replace="fragments/footer :: footer">
+
 </footer>
 </body>
 <script>

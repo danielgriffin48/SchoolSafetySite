@@ -14,6 +14,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 </head>
 <body>
+<header th:replace="fragments/header :: header">
+</header>
 <div class="mainContainer">
     <div class="SchoolDetails">
         <div th:text="${school.establishmentName}"><h2></h2></div>
@@ -40,7 +42,7 @@
                 </span> children injured on their way to school in <span th:text="${school.parliamentaryConstituency}">
 
                     </span>.
-                <br><button class="actionButton">Contact <span>Boris Johnson</span> now</button>
+                        <br><a th:href="@{/urn/wpc/{wpc} (wpc=${school.parliamentaryConstituency})}"><button class="actionButton">Contact <span th:text="${MP}"></span> now</button></a>
             </div></div>
             </div>
 
@@ -73,9 +75,8 @@
         </div>
     </div>
 </div>
-<footer>
-    <h4><p>Developed by</p>
-        <p>Daniel Griffin</p></h4>
+<footer th:replace="fragments/footer :: footer">
+
 </footer>
 <script  th:inline="javascript">
     var schoolLat = [[${school.lat}]];
