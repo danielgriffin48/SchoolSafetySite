@@ -1,5 +1,5 @@
 # School Safety Site
-## A prototype campaign website to give road safety campaginers the data they need to make roads safety
+## A prototype campaign website to give road safety campaginers the data they need to improve road safety
 This project started after a failed information request from an MP about the number of road accidents outside of schools. In their response to the MP the Department for Transport simply said they although they have a lot of detailed data, they have no variable that tracks accidents outside of schools. 
 
 
